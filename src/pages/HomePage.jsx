@@ -4,7 +4,7 @@ export default function HomePage() {
   return (
     <>
       <div>Homepage</div>
-      <Link to="/Prodotti"> Prodotti</Link>
+      <Link to="/prodotti"> Prodotti</Link>
     </>
   );
 }
