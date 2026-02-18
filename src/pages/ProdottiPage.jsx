@@ -1,73 +1,33 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+
+const productsApi = "https://fakestoreapi.com/products";
+
 export default function ProdottiPage() {
+  const [productList, setProductList] = useState([]);
+
+  useEffect(() => {
+    axios.get(productsApi).then((res) => setProductList(res.data));
+  }, []);
+
   return (
     <section>
-      <div className="row row-cols-1 row-cols-md-3 g-4">
-        <div className="col">
-          <div className="card h-100">
-            <img src="..." className="card-img-top" alt="..." />
-            <div className="card-body">
-              <h5 className="card-title">Card title</h5>
-              <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
-            </div>
-            <ul className="list-group list-group-flush">
-              <li className="list-group-item">An item</li>
-              <li className="list-group-item">A second item</li>
-              <li className="list-group-item">A third item</li>
-            </ul>
-            <div className="card-body">
-              <a href="#" className="card-link">
-                Card link
-              </a>
-              <a href="#" className="card-link">
-                Another link
-              </a>
+      <div className="row row-cols-1 row-cols-md-3 row-cols-lg-5 g-4">
+        {productList.map((product) => (
+          <div key={product.id} className="col">
+            <div className="card-wrapper card h-100">
+              <img src={product.image} className="card-img-top" alt={product.title} />
+              <div className="card-body">
+                <h5 className="card-title">{product.title}</h5>
+                <p className="card-text">{product.description}</p>
+              </div>
+              <ul className="list-group list-group-flush">
+                <li className="list-group-item">Price: {product.price}</li>
+                <li className="list-group-item">Category: {product.category}</li>
+              </ul>
             </div>
           </div>
-        </div>
-        <div className="col">
-          <div className="card h-100">
-            <img src="..." className="card-img-top" alt="..." />
-            <div className="card-body">
-              <h5 className="card-title">Card title</h5>
-              <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
-            </div>
-            <ul className="list-group list-group-flush">
-              <li className="list-group-item">An item</li>
-              <li className="list-group-item">A second item</li>
-              <li className="list-group-item">A third item</li>
-            </ul>
-            <div className="card-body">
-              <a href="#" className="card-link">
-                Card link
-              </a>
-              <a href="#" className="card-link">
-                Another link
-              </a>
-            </div>
-          </div>
-        </div>
-        <div className="col">
-          <div className="card h-100">
-            <img src="..." className="card-img-top" alt="..." />
-            <div className="card-body">
-              <h5 className="card-title">Card title</h5>
-              <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
-            </div>
-            <ul className="list-group list-group-flush">
-              <li className="list-group-item">An item</li>
-              <li className="list-group-item">A second item</li>
-              <li className="list-group-item">A third item</li>
-            </ul>
-            <div className="card-body">
-              <a href="#" className="card-link">
-                Card link
-              </a>
-              <a href="#" className="card-link">
-                Another link
-              </a>
-            </div>
-          </div>
-        </div>
+        ))}
       </div>
     </section>
   );

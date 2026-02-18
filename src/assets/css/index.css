@@ -1,0 +1,8 @@
+.card-wrapper {
+  height: 100%;
+}
+
+.card-wrapper img {
+  height: 200px;
+  object-fit: contain;
+}
