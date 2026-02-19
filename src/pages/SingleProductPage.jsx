@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -6,14 +6,31 @@ const productsApi = "https://fakestoreapi.com/products";
 
 export default function SingleProductPage() {
   const { id } = useParams();
+  const navigate = useNavigate();
 
+  //stato dati del prodotto
   const [product, setProduct] = useState();
+  //stato caricamento pagina
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    axios.get(`${productsApi}/${id}`).then((res) => setProduct(res.data));
+    setIsLoading(true);
+    axios
+      .get(`${productsApi}/${id}`)
+      .then((res) => {
+        console.log(res);
+        setProduct(res.data);
+      })
+      .catch((error) => {
+        console.log("errore", error.response);
+        if (error?.response?.status === 404) navigate("/prodotti");
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   }, []);
 
-  if (!product) return <h2>Loading</h2>;
+  if (isLoading) return <h2>Loading</h2>;
 
   return (
     <section className="container">
