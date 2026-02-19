@@ -1,6 +1,6 @@
-export default function ChiSiamoPage() {
+export default function AboutPage() {
   return (
-    <>
+    <section className="container">
       <section className="homepage row align-items-end justify-content-end ">
         <div className="col-12 col-md-6">
           <img className="img-fluid" src="public/img/shopping_spree.jpg" alt="shopping_spree" />
@@ -35,6 +35,6 @@ export default function ChiSiamoPage() {
           </div>
         </div>
       </section>
-    </>
+    </section>
   );
 }

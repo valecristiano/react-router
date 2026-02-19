@@ -7,7 +7,7 @@ export default function Header() {
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
           <div className="container-fluid">
             <NavLink className="navbar-brand" to="/">
-              <img src="public/img/boolean_favicon.png" alt="logo-shopping" style={{ height: 50 }} />
+              <img src="/img/boolean_favicon.png" alt="logo-shopping" style={{ height: 50 }} />
             </NavLink>
             <button
               className="navbar-toggler"
