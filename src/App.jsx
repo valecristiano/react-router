@@ -4,6 +4,7 @@ import DefaultLayout from "./layouts/DefaultLayout";
 import ProductsPage from "./pages/ProductsPage";
 import AboutPage from "./pages/AboutPage";
 import SingleProductPage from "./pages/SingleProductPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
             <Route path="/chisiamo" Component={AboutPage}></Route>
             <Route path="/prodotti" Component={ProductsPage}></Route>
             <Route path="/prodotti/:id" Component={SingleProductPage}></Route>
+            <Route path="*" Component={NotFoundPage}></Route>
           </Route>
         </Routes>
       </BrowserRouter>

@@ -12,6 +12,8 @@ export default function SingleProductPage() {
   const [product, setProduct] = useState();
   //stato caricamento pagina
   const [isLoading, setIsLoading] = useState(true);
+  // stato errore
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
@@ -19,18 +21,34 @@ export default function SingleProductPage() {
       .get(`${productsApi}/${id}`)
       .then((res) => {
         console.log(res);
-        setProduct(res.data);
+        // condizione per far andare in errore in caso di id non presente (status 200)
+        if (!res.data.id) {
+          setError(true);
+        } else {
+          setProduct(res.data);
+        }
       })
-      .catch((error) => {
-        console.log("errore", error.response);
-        if (error?.response?.status === 404) navigate("/prodotti");
+      .catch((err) => {
+        console.log("errore", err.response);
+        if (err?.response?.status === 404) {
+          setError(true);
+        }
       })
       .finally(() => {
         setIsLoading(false);
       });
   }, []);
 
-  if (isLoading) return <h2>Loading</h2>;
+  if (isLoading)
+    return (
+      <div className="container layover">
+        {" "}
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>{" "}
+      </div>
+    );
+  if (error) return navigate("/404");
 
   return (
     <section className="container">

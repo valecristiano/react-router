@@ -7,9 +7,26 @@ const productsApi = "https://fakestoreapi.com/products";
 export default function ProdottiPage() {
   const [productList, setProductList] = useState([]);
 
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
-    axios.get(productsApi).then((res) => setProductList(res.data));
+    setIsLoading(true);
+    axios
+      .get(productsApi)
+      .then((res) => setProductList(res.data))
+      .finally(() => {
+        setIsLoading(false);
+      });
   }, []);
+  if (isLoading)
+    return (
+      <div className="container layover">
+        {" "}
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>{" "}
+      </div>
+    );
 
   return (
     <section className="container">
