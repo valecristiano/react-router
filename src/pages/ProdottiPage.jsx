@@ -12,7 +12,7 @@ export default function ProdottiPage() {
   }, []);
 
   return (
-    <section>
+    <section className="container">
       <div className="row row-cols-1 row-cols-md-3 row-cols-lg-5 g-4">
         {productList.map((product) => (
           <div key={product.id} className="col">
