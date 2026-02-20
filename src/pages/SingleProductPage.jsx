@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -43,8 +43,8 @@ export default function SingleProductPage() {
     return (
       <div className="container layover">
         {" "}
-        <div class="spinner-border" role="status">
-          <span class="visually-hidden">Loading...</span>
+        <div className="spinner-border" role="status">
+          <span className="visually-hidden">Loading...</span>
         </div>{" "}
       </div>
     );
@@ -52,8 +52,8 @@ export default function SingleProductPage() {
 
   return (
     <section className="container">
-      <div className="row row-cols-1 row-cols-md-3 row-cols-lg-5 g-4">
-        <div key={product.id} className="col">
+      <div className="row row-cols-3 justify-content-centers">
+        <div className="col">
           <div className="card-wrapper card h-100">
             <img src={product.image} className="card-img-top" alt={product.title} />
             <div className="card-body">
