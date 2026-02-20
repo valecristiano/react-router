@@ -5,21 +5,24 @@ import ProductsPage from "./pages/ProductsPage";
 import AboutPage from "./pages/AboutPage";
 import SingleProductPage from "./pages/SingleProductPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import { BudgetProvider } from "./contexts/BudgetContext";
 
 export default function App() {
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route Component={DefaultLayout}>
-            <Route path="/" Component={HomePage}></Route>
-            <Route path="/chisiamo" Component={AboutPage}></Route>
-            <Route path="/prodotti" Component={ProductsPage}></Route>
-            <Route path="/prodotti/:id" Component={SingleProductPage}></Route>
-            <Route path="*" Component={NotFoundPage}></Route>
-          </Route>
-        </Routes>
-      </BrowserRouter>
+      <BudgetProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route Component={DefaultLayout}>
+              <Route path="/" Component={HomePage}></Route>
+              <Route path="/chisiamo" Component={AboutPage}></Route>
+              <Route path="/prodotti" Component={ProductsPage}></Route>
+              <Route path="/prodotti/:id" Component={SingleProductPage}></Route>
+              <Route path="*" Component={NotFoundPage}></Route>
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </BudgetProvider>
     </>
   );
 }
